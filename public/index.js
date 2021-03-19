@@ -15,8 +15,9 @@ async function uploadFile(){
           },
         body: JSON.stringify(dataToSend)
     })
-    let resJson = await JSON.parse(res.json())
+    let resJson = await res.json()
     console.log(resJson.data.body.text)
+
     $('.content').append(resJson.data.body.text)
 }
 
