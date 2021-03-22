@@ -45,7 +45,7 @@ app.post('/upload', async (req, res) => {
             //     text = text.replace(theWord[0], "lalala")
             // }
             for(let i = 0; i<theWord[1]+1; i++){
-                text = text.replace(" " + theWord[0] + " ", "foo"+theWord[0]+"bar")
+                text = text.replace(" " + theWord[0] + " ", " foo"+theWord[0]+"bar ")
             }
             //text = text.replace(theWord[0], "lalala")
             console.log("text:")
