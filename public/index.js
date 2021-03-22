@@ -1,30 +1,29 @@
-$('#btn_uploadfile').on('click', uploadFile)
+$('#btn_uploadfile').on('click', uploadFile);
 
 async function uploadFile(){
-    const input = document.querySelector('input[type="file"]');
+    const input = document.querySelector("input[type='file']");
     const file = input.files[0];
 
     const contents = await readFile(file);
 
     let dataToSend = {text: contents}
     if(!contents) {
-        $('.content').html("<p>The uploaded file is empty.</p>")
+        $(".content").html("<p>The uploaded file is empty.</p>");
     }
     else {
-        let res = await fetch('/upload', {
-            method: 'POST',
+        let res = await fetch("/api/text", {
+            method: "POST",
              headers: {
-            'Content-Type': 'application/json'
+                "Content-Type": "application/json"
             },
             body: JSON.stringify(dataToSend)
         }).catch((error) => {
-            console(error)
+            console(error);
         })
         
-        let resJson = await res.json()
-        console.log(resJson.data.body.text)
-
-        $('.content').html("<p>" + resJson.data.body.text + "</p>")
+        let resJson = await res.json();
+        //console.log(resJson.data.body.text)
+        $(".content").html("<p>" + resJson.data.body.text + "</p>");
     }
 }
 
