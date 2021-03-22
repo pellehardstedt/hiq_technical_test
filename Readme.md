@@ -1,77 +1,49 @@
-# HiQ Skåne Backend Test #
+# README #
+
+### What is this repository for? ###
+This repository serves as a technical interview for developers pursuing a position at HiQ Skåne.
 
 ## Instructions ##
 Thank you for taking the time to do HiQ's recruitment test. It consists of two parts:
-- [Coding test]
-- [A few technical questions]
+* Coding test
+* A few questions
 
-## Coding test
-We want you to provide a simulator for radio controlled cars!
+### Coding test ###
+* Your task is to build a web application that processes files containing text.
+* The user should upload a file from his or her browser to the server and then be presented with the processed text.
+* In the processed text, the application should surround every occurrence of the most used word with foo and bar.
+    * Example: If the most used word is 'hiq', the processed text should display 'foohiqbar' instead of 'hiq'.
+* In this repository you'll find some useful text files for testing your application.
+* Choose one of the options below for your web application:
+    * Develop a web application (frontend only)
+    * Develop a restful web API (backend only)
+    * Develop a web application with a restful web API and frontend
+* You are free to choose what specific technologies to use in this assignment, however we suggest
+    * ASP.NET Core, ASP.NET Framework for backend
+    * JavaScript, React/Vue/Angular for frontend
+    * Webpack
+    * Automated tests are nice, but not mandatory
+    * Please list of all your technical choises and motivate them
 
-This is what the simulator should do:
-* Handle various commands to make the cars move.
-* Handle various types of radio cars.
-* Provide a room for the cars to move in.
-
-Action commands and how they should work:
-* A car can move and turn as follows; move forward, move back, turn left and turn right. These commands shall be represented by input commands F, B, L, and R respectively.
-* A car can have a direction; North, west, south or east. These commands shall be represented by input commands N, W, S, and E respectively.
-* A turn to either the left or the right shall be considered as a 90 degree turn.
-
-Rooms and how it should work:
-* The rooms will need two input parameters to provide a scope for a rectangular shaped room.
-* Scope input shall represent whole meters and have no decimals.
-* The rooms shall be considered to be surrounded by walls.
-
-Cars and how they should work:
-* A car should move and turn according to command input.
-* A car cannot move through a wall.
-* A car can be considered to have a size scope of a 1x1 meter object.
-
-The simulator should work as a console application. It shall run with inputted commands for room, cars and starting position in the room. The sequence for these commands should have the following order:
-* Room input.
-* Starting position and direction of a car.
-* A sequence of action commands.
-
-After a simulation has run, the simulator shall output the result. A result of the simulation can be either successful or unsuccessfull. 
-* Criteria for a successfull simulation is that the car moves through the room according to given commands, while not crashing into any wall during the route. 
-* The output from a successful simulation should consist of the end position of the car as well as the heading of the car.
-* Criteria for an unsuccessful simulation is that the car crashes into a wall.
-* The output from an unsuccessful simulation should describe an error of what went wrong.
-
-### What we review
-We ask you to do this test to show your skills as a developer. Our reviewers will focus on your overall design of the solution, error handling, maintainability of your code, and object orientated principles if applicable for the selected language.
-
-### Coding task requirements
-We think that this test will take you between 6-8 hours, however this is not a time limit so feel free to spend as much time as you see necessary.
-
-
-### User Story
-As a **user running the simulation**
-I want to **provide the simulator with command input**
-And get **simulation results based on said command input**
-So that **I know if a route is successful or not**.
-
-## Questions
+### Questions ###
 Please answer these questions in a markdown file called `Answers.md`.
 
-1. How long time did you end up spending on this coding test?
+1. How much time did you end up spending on this coding test?
 2. Explain why you chose the code structure(s) you used in your solution.
 3. What would you add to your solution if you had more time? This question is especially important if you did not spend much time on the coding test - use this as an opportunity to explain what your solution is missing.
 4. What did you think of this recruitment test?
 
-## How do I hand in my solution? ##
+
+## Where do I hand in my solution? ##
 * Please send your solution to [anna.eggert@hiq.se](mailto:anna.eggert@hiq.se) as a zip-file 
     * All typically ignored files and folders should be removed (node_modules, bin etc).
     * The zip-file should contain a clone of this git repo, with your work added in commit(s).
-* The answers to the technical questions should be included as a single markdown file named `Answers.md`.
 
-Before submitting it to us, please make sure that the following requirements have been met:
-* Complete the user story described above.
-* In a README file, describe your solution and make sure you provide a guide on how to use you simulator. If your solution needs specific instructions on how to run and compile your code you must add them to the README as well.
-* Write your solution in one of the following languages; Java, C++, C#, JavaScript. If you wish to use another language, please check beforehand with Anna Eggert.
-* Your code must compile and run.
-* Feel free to use whatever frameworks/libraries/packages you like.
-* You must include tests.
+### If we agree to meet for an interview ###
+* Please bring your web application along to your interview
+    * Be prepared to run and demonstrate the application. 
+    * Be prepared to present the code in an IDE of your choice on your own computer. 
+* In addition to this assignment you should also be prepared to show other projects you developed (if you have any).
 
-#### Thank you for doing this test, we look forward to reviewing your solution!
+### If I have any questions ###
+If you have any questions about your assignment you are welcome to contact Anna Eggert at [anna.eggert@hiq.se](mailto:anna.eggert@hiq.se)

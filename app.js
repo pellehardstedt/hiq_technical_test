@@ -48,8 +48,11 @@ app.post('/upload', async (req, res) => {
                 text = text.replace(" " + theWord[0] + " ", " foo"+theWord[0]+"bar ")
             }
             for(let i = 0; i<theWord[1]+1; i++){
-                text = text.replace(" " + uWord, " foo"+uWord+"bar ")
+                text = text.replace(" " + uWord, " foo"+uWord+"bar")
             }
+            text = text.split('\r\n').join('<br>') 
+
+            console.log(text)
 
             let dataToSend = {text: text}
             //send response
@@ -66,10 +69,10 @@ app.post('/upload', async (req, res) => {
     }
 });
 
-async function counter(text){
-    words = text.split('\r').join(' ')
+async function counter(textCount){
+    words = textCount.split('\r').join(' ')
     words = words.split('\n').join(' ')
-    words = text.split(' ')
+    words = textCount.split(' ')
 
     let index = {}
 
