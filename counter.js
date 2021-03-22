@@ -20,13 +20,12 @@ async function counter(textCount){
     for (var word in index) {
         sortArray.push([word, index[word]]);
     }
+    
     sortArray.sort((a, b) => {
         return b[1] - a[1];
     });
-    for(let i = 0; i< 10; i++){
-        console.log(sortArray[i])
-    }
-    return sortArray[0];
+    
+    return sortArray[0][0];
 }
 
 module.exports = counter

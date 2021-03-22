@@ -1,8 +1,8 @@
-const counter = require('./counter.js');
-var express = require('express');
+const counter = require("./counter.js");
+var express = require("express");
 var router = express.Router();
 
-router.post('/api/text', async (req, res) => {
+router.post("/api/text", async (req, res) => {
     try {
         if(!req.body) {
             res.send({
@@ -12,24 +12,33 @@ router.post('/api/text', async (req, res) => {
         } else {
             let text = req.body.text;   
 
+            wordAlterations = [];
+
+            //the counter function returns the most used word in lower case letters
             theWord = await counter(text);
 
-            console.log("the word: " + theWord);
-            wordArray = theWord[0].split("");
+            //save lower case version of the word
+            wordAlterations.push(theWord)
+
+            //create the word with first letter uppercase
+            wordArray = theWord.split("");
             wordArray[0] = wordArray[0].toUpperCase();
-            let firstLetterUpper = wordArray.join("");
-            let allUpperCase = theWord[0].toUpperCase();
+            //save the version with the first letter uppercase
+            wordAlterations.push(wordArray.join(""));
 
-            text = text.split(" " + theWord[0] + " ").join(" foo"+theWord[0]+"bar ");
+            //save the all upper case version of the word
+            wordAlterations.push(theWord.toUpperCase());
 
-            text = text.split(firstLetterUpper + " ").join(" foo"+firstLetterUpper+"bar ");
+            //loop thru the 3 alterations
+            for(let i = 0; i<wordAlterations.length; i++){
+                text = splitting(text, wordAlterations[i])
+            }
 
-            text = text.split(allUpperCase + " ").join(" foo"+allUpperCase+"bar ");
-
+            //translate \n to html for line breaks
             text = text.split("\r\n").join("<br>");
 
             let dataToSend = {text: text};
-            //send response
+
             res.send({
                 status: true,
                 message: "File is uploaded",
@@ -42,5 +51,12 @@ router.post('/api/text', async (req, res) => {
         res.status(500).send(err);
     }
 });
+
+function splitting(text, wordVersion){
+    text = text.split(" " + wordVersion + " ").join(" foo"+wordVersion+"bar ");
+    text = text.split(wordVersion + " ").join("foo"+wordVersion+"bar ");
+    text = text.split(" " + wordVersion).join(" foo"+wordVersion+"bar");
+    return text;
+}
 
 module.exports = router;
