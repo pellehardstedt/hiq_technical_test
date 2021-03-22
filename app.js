@@ -40,19 +40,20 @@ app.post('/upload', async (req, res) => {
             //console.log("text:")
             
             theWord = await counter(text)
-            let uWord = theWord[0]
-            uWord[0] = uWord[0].toUpperCase()
-            console.log(uWord)
- 
-            for(let i = 0; i<theWord[1]+1; i++){
-                text = text.replace(" " + theWord[0] + " ", " foo"+theWord[0]+"bar ")
-            }
-            for(let i = 0; i<theWord[1]+1; i++){
-                text = text.replace(" " + uWord, " foo"+uWord+"bar")
-            }
-            text = text.split('\r\n').join('<br>') 
+            console.log("the word: " + theWord)
+            wordArray = theWord[0].split("")
+            wordArray[0] = wordArray[0].toUpperCase()
+            let firstLetterUpper = wordArray.join("")
+            let allUpperCase = theWord[0].toUpperCase()
 
-            console.log(text)
+            text = text.split(" " + theWord[0] + " ").join(" foo"+theWord[0]+"bar ") 
+
+            text = text.split(firstLetterUpper + " ").join(" foo"+firstLetterUpper+"bar ") 
+
+            text = text.split(allUpperCase + " ").join(" foo"+allUpperCase+"bar ") 
+
+
+            text = text.split('\r\n').join('<br>') 
 
             let dataToSend = {text: text}
             //send response
@@ -70,9 +71,12 @@ app.post('/upload', async (req, res) => {
 });
 
 async function counter(textCount){
-    words = textCount.split('\r').join(' ')
+    textCount = textCount.toLowerCase()
+    words = textCount.split('\r\n').join(' ')
+    words = words.split('\r').join(' ')
     words = words.split('\n').join(' ')
-    words = textCount.split(' ')
+    words = words.split('_').join(' ')
+    words = words.split(' ')
 
     let index = {}
 
@@ -92,6 +96,9 @@ async function counter(textCount){
     sortArray.sort((a, b) => {
         return b[1] - a[1];
     });
+    for(let i = 0; i< 10; i++){
+        console.log(sortArray[i])
+    }
     return sortArray[0]
 
 }
