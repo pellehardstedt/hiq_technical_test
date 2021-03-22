@@ -18,7 +18,7 @@ async function uploadFile(){
     let resJson = await res.json()
     console.log(resJson.data.body.text)
 
-    $('.content').append(resJson.data.body.text)
+    $('.content').html("<p>" + resJson.data.body.text + "</p>")
 }
 
 function readFile(file) {

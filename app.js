@@ -40,16 +40,16 @@ app.post('/upload', async (req, res) => {
             //console.log("text:")
             
             theWord = await counter(text)
-            console.log(theWord[0])
-            // for(let i = 0; i<theWord[1]+1; i++){
-            //     text = text.replace(theWord[0], "lalala")
-            // }
+            let uWord = theWord[0]
+            uWord[0] = uWord[0].toUpperCase()
+            console.log(uWord)
+ 
             for(let i = 0; i<theWord[1]+1; i++){
                 text = text.replace(" " + theWord[0] + " ", " foo"+theWord[0]+"bar ")
             }
-            //text = text.replace(theWord[0], "lalala")
-            console.log("text:")
-            console.log(text)
+            for(let i = 0; i<theWord[1]+1; i++){
+                text = text.replace(" " + uWord, " foo"+uWord+"bar ")
+            }
 
             let dataToSend = {text: text}
             //send response
@@ -69,8 +69,7 @@ app.post('/upload', async (req, res) => {
 async function counter(text){
     words = text.split('\r').join(' ')
     words = words.split('\n').join(' ')
-    words = words.split(' ')
-    //console.log(words)
+    words = text.split(' ')
 
     let index = {}
 
